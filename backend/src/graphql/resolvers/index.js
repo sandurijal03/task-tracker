@@ -1,7 +1,3 @@
-const resolvers = {
-  Query: {
-    hello: () => 'hello world',
-  },
-};
+const postResolvers = require('./post');
 
-module.exports = resolvers;
+module.exports = [postResolvers];
