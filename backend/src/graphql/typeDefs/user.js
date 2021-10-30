@@ -9,18 +9,25 @@ const typeDefs = gql`
     password: String
   }
 
-  input UserInput {
+  input RegisterInput {
     firstName: String
     lastName: String
     email: String
     password: String
   }
+
+  input LoginInput {
+    email: String
+    password: String
+  }
+
   extend type Query {
     getUsers: String
   }
 
   extend type Mutation {
-    register(userInput: UserInput): User
+    register(userInput: RegisterInput): User
+    login(userInput: LoginInput): User
   }
 `;
 
