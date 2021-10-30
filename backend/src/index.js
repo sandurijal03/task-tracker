@@ -4,11 +4,13 @@ const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 
 const { resolvers, typeDefs } = require('./graphql');
+const connectDB = require('./db/connectDB');
 
 const app = express();
 const port = process.env.PORT || 4000;
 
 const mountServer = async () => {
+  await connectDB();
   const server = new ApolloServer({
     resolvers,
     typeDefs,
