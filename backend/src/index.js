@@ -1,20 +1,10 @@
 const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 
+const { resolvers, typeDefs } = require('./graphql');
+
 const app = express();
 const port = process.env.PORT || 4000;
-
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => 'hello world',
-  },
-};
 
 const mountServer = async () => {
   const server = new ApolloServer({
