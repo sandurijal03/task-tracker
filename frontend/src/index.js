@@ -1,19 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Routing from './Routing';
 
-import styled from 'styled-components';
-
-const AppStyled = styled.div`
-  text-align: center;
-`;
-
-const App = () => {
-  return (
-    <AppStyled>
-      <h1>hello world</h1>
-    </AppStyled>
-  );
-};
+import { GlobalStyle } from './styles';
 
 const root = document.getElementById('root');
-ReactDOM.render(<App />, root);
+ReactDOM.render(
+  <BrowserRouter>
+    <GlobalStyle />
+    <Routing />
+  </BrowserRouter>,
+  root,
+);
