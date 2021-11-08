@@ -1,4 +1,4 @@
-const { hashPassword, decryptPassword } = require('../../helpers/hash');
+import { decryptPassword, encryptPassword } from '../../helpers/hash';
 
 const resolvers = {
   Query: {
@@ -8,7 +8,7 @@ const resolvers = {
     register: async (parent, { userInput }, { User }, info) => {
       try {
         const { firstName, lastName, email, password } = userInput;
-        const hashedPassword = await hashPassword(password);
+        const hashedPassword = await decryptPassword(password);
         const newUser = await new User({
           firstName,
           lastName,
@@ -47,4 +47,4 @@ const resolvers = {
   },
 };
 
-module.exports = resolvers;
+export default resolvers;

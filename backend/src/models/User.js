@@ -1,14 +1,17 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model } from 'mongoose';
 
 const userSchema = new Schema(
   {
-    firstName: {
+    googleId: {
+      type: String,
+      required: false,
+    },
+    name: {
       type: String,
       required: true,
     },
-    lastName: {
+    avatar: {
       type: String,
-      required: true,
     },
     email: {
       type: String,
@@ -26,4 +29,4 @@ const userSchema = new Schema(
 
 const User = model('User', userSchema);
 
-module.exports = User;
+export default User;

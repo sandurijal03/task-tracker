@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js",
-    "serve": "nodemon src/index.js"
+    "start": "node -r esm src/index.js",
+    "serve": "nodemon -r esm src/index.js"
   },
   "dependencies": {
     "apollo-server-express": "^3.4.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "graphql": "^16.0.0",
     "mongoose": "^6.0.12"

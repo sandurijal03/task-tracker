@@ -1,5 +1,5 @@
-const baseDefs = require('./baseDefs');
-const post = require('./post');
-const user = require('./user');
+import baseDefs from './baseDefs';
+import post from './post';
+import user from './user';
 
-module.exports = [baseDefs, post, user];
+export default [baseDefs, post, user];

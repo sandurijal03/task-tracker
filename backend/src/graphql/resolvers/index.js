@@ -1,4 +1,5 @@
-const postResolvers = require('./post');
-const userResolvers = require('./auth');
+import postResolvers from './post';
+import userResolvers from './auth';
+import viewerResolvers from './viewers';
 
-module.exports = [postResolvers, userResolvers];
+export default [postResolvers, userResolvers, viewerResolvers];

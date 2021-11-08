@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+import { gql } from 'apollo-server-express';
 
 const postTypeDefs = gql`
   extend type Query {
@@ -6,4 +6,4 @@ const postTypeDefs = gql`
   }
 `;
 
-module.exports = postTypeDefs;
+export default postTypeDefs;

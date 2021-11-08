@@ -1,11 +1,11 @@
 require('dotenv').config();
 
-const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
 
-const { resolvers, typeDefs } = require('./graphql');
-const connectDB = require('./db/connectDB');
-const User = require('./models/User');
+import { resolvers, typeDefs } from './graphql';
+import connectDB from './db/connectDB';
+import User from './models/User';
 
 const app = express();
 const port = process.env.PORT || 4000;
