@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import FormHeader from '../../components/FormHeader';
 
@@ -36,32 +36,45 @@ const ReportsStyled = styled.div`
 `;
 
 const Reports = () => {
+  const [gridView, setGridView] = useState(true);
+  const [listView, setListView] = useState(false);
+
   return (
     <ReportsStyled>
-      <FormHeader name='Reports' />
+      <FormHeader
+        name='Reports'
+        gridView={gridView}
+        listView={listView}
+        setGridView={setGridView}
+        setListView={setListView}
+      />
       <div className='bottom'>
-        <table>
-          <thead>
-            <th>Form</th>
-            <th>Last updated</th>
-            <th>Status</th>
-            <th>Action</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>sample form</td>
-              <td>jfankfakjf</td>
-              <td>draft</td>
-              <td>no action</td>
-            </tr>
-            <tr>
-              <td>sample form</td>
-              <td>jfankfakjf</td>
-              <td>draft</td>
-              <td>no action</td>
-            </tr>
-          </tbody>
-        </table>
+        {listView && (
+          <table>
+            <thead>
+              <tr>
+                <th>Form</th>
+                <th>Last updated</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>sample form</td>
+                <td>jfankfakjf</td>
+                <td>draft</td>
+                <td>no action</td>
+              </tr>
+              <tr>
+                <td>sample form</td>
+                <td>jfankfakjf</td>
+                <td>draft</td>
+                <td>no action</td>
+              </tr>
+            </tbody>
+          </table>
+        )}
       </div>
     </ReportsStyled>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { IoMdGrid } from 'react-icons/io';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,11 @@ const FormHeaderStyled = styled.div`
   h1 {
     margin: 10px 20px;
   }
+
+  .active {
+    background-color: gray;
+  }
+
   .top {
     display: flex;
     justify-content: space-between;
@@ -25,6 +30,10 @@ const FormHeaderStyled = styled.div`
         }
 
         :active {
+          color: blue;
+        }
+
+        :focus {
           color: blue;
         }
       }
@@ -86,18 +95,22 @@ const DesignFormButton = styled.button`
   }
 `;
 
-const FormHeader = ({ name }) => {
-  const [gridView, setGridView] = useState(true);
-  const [listView, setListView] = useState(false);
-
-  const handleListView = () => {
+const FormHeader = ({ name, listView, gridView, setGridView, setListView }) => {
+  const handleListView = (e) => {
+    if (listView) {
+      e.target.style.color = 'blue';
+    }
     setListView(true);
     setGridView(false);
   };
 
-  const handleGridView = () => {
+  const handleGridView = (e) => {
+    console.log(gridView);
+    if (gridView) {
+      e.target.style.color = 'blue';
+    }
     setGridView(true);
-    setListView(true);
+    setListView(false);
   };
 
   return (

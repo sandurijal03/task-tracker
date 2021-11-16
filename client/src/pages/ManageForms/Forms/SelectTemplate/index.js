@@ -7,8 +7,10 @@ import FormHeader from '../../../components/FormHeader';
 
 const SelectTemplateStyled = styled.div`
   position: absolute;
-  left: 150px;
-  width: 90%;
+  left: 80px;
+  width: calc(100% - 80px);
+  height: 100%;
+  background-color: #f1f5f7;
 `;
 
 const FormTypes = styled.div`
@@ -24,7 +26,8 @@ const SampleCard = styled.div`
   justify-content: space-between;
   padding: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+  background-color: white;
+  margin: 10px 20px;
 
   .card-top {
     display: flex;

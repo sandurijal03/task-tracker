@@ -1,7 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { MdNavigateNext } from 'react-icons/md';
 import ProcessDetailed from '../components/ProcessDetailed';
+
+let stages = [
+  {
+    id: 1,
+    name: 'Manager Approval',
+  },
+  {
+    id: 2,
+    name: 'HR Approval',
+  },
+  {
+    id: 3,
+    name: 'Submit',
+  },
+  {
+    id: 4,
+    name: 'Completed',
+  },
+];
 
 const ProcessStyled = styled.div`
   position: absolute;
@@ -24,6 +43,31 @@ const ProcessStyled = styled.div`
         margin: 10px 0;
         display: flex;
         justify-content: space-between;
+        cursor: move;
+
+        .dropArea {
+          color: white !important;
+          background: white !important;
+          position: relative;
+
+          ::before {
+            content: 'Drop Here';
+            color: $blue;
+            font-size: 0.5em;
+            text-transform: uppercase;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed $blue;
+            border-radius: 3px;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+        :hover {
+          background: linear-gradient(to left, blue, lightgray);
+        }
       }
     }
   }
@@ -33,7 +77,18 @@ const ProcessStyled = styled.div`
   }
 `;
 
+const initialDragAndDropState = {
+  draggedFrom: null,
+  draggedTo: null,
+  isDragging: false,
+  originalOrder: [],
+  updatedOrder: [],
+};
+
 const Process = () => {
+  const [list, setList] = useState(stages);
+  const [dragAndDrop, setDragAndDrop] = useState(initialDragAndDropState);
+
   const [showMenu, setShowMenu] = useState(false);
   const [stageName, setStageName] = useState('');
 
@@ -42,42 +97,96 @@ const Process = () => {
     setShowMenu(true);
   };
 
+  const onDragStart = (e) => {
+    const initialPosition = Number(e.currentTarget.dataset.position);
+    setDragAndDrop({
+      ...dragAndDrop,
+      draggedFrom: initialPosition,
+      isDragging: true,
+      originalOrder: list,
+    });
+    e.dataTransfer.setData('text/html', '');
+  };
+
+  const onDragOver = (e) => {
+    e.preventDefault();
+
+    let newStages = dragAndDrop.originalOrder;
+
+    const draggedFrom = dragAndDrop.draggedFrom;
+    const draggedTo = Number(e.currentTarget.dataset.position);
+
+    const stageDragged = newStages[draggedFrom];
+    const remainingStages = newStages.filter(
+      (stage, index) => index !== draggedFrom,
+    );
+
+    newStages = [
+      ...remainingStages.slice(0, draggedTo),
+      stageDragged,
+      ...remainingStages.slice(draggedTo),
+    ];
+
+    if (draggedTo !== dragAndDrop.draggedTo) {
+      setDragAndDrop({
+        ...dragAndDrop,
+        updatedOrder: newStages,
+        draggedTo: draggedTo,
+      });
+    }
+  };
+
+  useEffect(() => {}, [dragAndDrop]);
+  useEffect(() => {}, [list]);
+
+  const onDrop = () => {
+    setList(dragAndDrop.updatedOrder);
+    setDragAndDrop({
+      ...dragAndDrop,
+      draggedFrom: null,
+      draggedTo: null,
+      isDragging: false,
+    });
+  };
+
+  const onDragLeave = () => {
+    setDragAndDrop({
+      ...dragAndDrop,
+      draggedTo: null,
+    });
+  };
+
   return (
     <ProcessStyled>
       <h3>Form Process</h3>
       <div className='main'>
         <div className='left'>
           <ul>
-            <li onClick={handleClick}>
-              Manager Approval
-              <span>
-                <MdNavigateNext />
-              </span>
-            </li>
-            <li onClick={handleClick}>
-              HR Approval
-              <span>
-                <MdNavigateNext />
-              </span>
-            </li>
-            <li onClick={handleClick}>
-              Submit Approval
-              <span>
-                <MdNavigateNext />
-              </span>
-            </li>
-            <li onClick={handleClick}>
-              Completed
-              <span>
-                <MdNavigateNext />
-              </span>
-            </li>
-            <li onClick={handleClick}>
-              Submit
-              <span>
-                <MdNavigateNext />
-              </span>
-            </li>
+            {stages.map((stage, index) => {
+              return (
+                <li
+                  onClick={handleClick}
+                  key={index}
+                  data-position={index}
+                  draggable
+                  onDragStart={onDragStart}
+                  onDragOver={onDragOver}
+                  onDragLeave={onDragLeave}
+                  onDrop={onDrop}
+                  className={
+                    dragAndDrop && dragAndDrop.draggedTo === +index
+                      ? 'dropArea'
+                      : ''
+                  }
+                >
+                  {stage.id}
+                  {stage.name}
+                  <span>
+                    <MdNavigateNext />
+                  </span>
+                </li>
+              );
+            })}
           </ul>
         </div>
         {showMenu && (

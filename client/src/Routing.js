@@ -20,12 +20,16 @@ import SelectTemplate from './pages/ManageForms/Forms/SelectTemplate';
 import SampleForm from './pages/ManageForms/Forms/SelectTemplate/SampleForm';
 import BlankForm from './pages/ManageForms/Forms/SelectTemplate/BlankForm';
 import EmployeeRequestForm from './pages/ManageForms/Forms/SelectTemplate/EmployeeRequestForm';
-// import MessageSidebar from './pages/ManageForms/Forms/components/MessageSidebar';
+import MessageSidebar from './pages/ManageForms/Forms/components/MessageSidebar';
 import Process from './pages/ManageForms/Forms/pages/Process';
 import Permission from './pages/ManageForms/Forms/pages/Permission';
 import Designer from './pages/ManageForms/Forms/pages/Designer';
 import ReportsInner from './pages/ManageForms/Forms/pages/Reports';
 import FormNavbar from './pages/ManageForms/Forms/components/FormNavbar';
+import PreviewForm from './pages/ManageForms/Forms/components/PreviewForm';
+import LoadingCard from './components/LoadingCard';
+import HoverComponent from './pages/ManageForms/Forms/components/HoverComponent';
+import DummyData from './pages/ManageForms/Forms/components/DummyData';
 
 const Routing = () => {
   return (
@@ -33,7 +37,7 @@ const Routing = () => {
       <Header />
       <Sidebar />
       <Routes>
-        <Route exact path='/' element={<FormNavbar />} />
+        <Route exact path='/' element={<Process />} />
         <Route exact path='/dashboard' element={<Dashboard />} />
         <Route exact path='/submit-form' element={<SubmitForm />} />
         <Route exact path='/tasks' element={<Tasks />} />

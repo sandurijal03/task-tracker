@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { IoMdGrid, IoMdList } from 'react-icons/io';
-import FormHeader, { Button } from '../components/FormHeader';
+import LoadingCard from '../../components/LoadingCard';
+import FormHeader from '../components/FormHeader';
 
 const SubmitFormStyled = styled.div`
   position: absolute;
@@ -48,10 +48,11 @@ const SubmitFormStyled = styled.div`
   .bottom {
     position: absolute;
     top: 300px;
-    left: 130;
     width: 90%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
+    margin: 0 20px;
+    background-color: white;
     table {
       width: 100%;
     }
@@ -60,6 +61,17 @@ const SubmitFormStyled = styled.div`
     td {
       border-collapse: collapse;
       padding: 15px;
+      border-right: 1px solid lightgray;
+    }
+  }
+  .cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    .first,
+    .second {
+      display: flex;
+      justify-content: space-between;
     }
   }
 `;
@@ -68,19 +80,31 @@ const SubmitForm = () => {
   const [gridView, setGridView] = useState(true);
   const [listView, setListView] = useState(false);
 
-  const handleListView = () => {
-    setListView(true);
-    setGridView(false);
-  };
-
-  const handleGridView = () => {
-    setGridView(true);
-    setListView(false);
-  };
-
   return (
     <SubmitFormStyled>
-      <FormHeader name='Submit' />
+      <FormHeader
+        name='Submit'
+        listView={listView}
+        gridView={gridView}
+        setGridView={setGridView}
+        setListView={setListView}
+      />
+      {gridView && (
+        <div className='cards'>
+          <div className='first'>
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+          </div>
+          <div className='second'>
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+          </div>
+        </div>
+      )}
       {listView && (
         <div className='bottom'>
           <table>

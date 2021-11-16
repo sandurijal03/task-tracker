@@ -60,7 +60,7 @@ const MessageSidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to='manage-forms/form/sample/edit/:id/designer'>
+          <Link to='/manage-forms/form/employee-leave/edit/1/designer'>
             <AiOutlineAntDesign /> Designer
           </Link>
         </li>

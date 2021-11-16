@@ -12,14 +12,12 @@ import { Link } from 'react-router-dom';
 
 const SidebarStyled = styled.div`
   position: absolute;
-  top: 10;
   left: 0;
   width: 80px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-
   box-shadow: 0 2px 4px rgba(42, 51, 66, 0.08);
 
   ul {
@@ -44,7 +42,7 @@ const SidebarStyled = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-bottom: 2px solid;
+    border-bottom: 2px solid lightgray;
     text-align: center;
     padding: 10px 10px;
     width: 80px;

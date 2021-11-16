@@ -4,22 +4,24 @@ import { EditOutlined } from '@ant-design/icons';
 import { Editor } from '@tinymce/tinymce-react';
 import { Switch } from 'antd';
 import MessageSidebar from '../components/MessageSidebar';
+import FormNavbar from '../components/FormNavbar';
 
 const EmployeeRequestFormStyled = styled.div`
   position: absolute;
   left: 150px;
   margin: 20px auto;
-  width: 90%;
+  width: 60%;
   display: flex;
   .left {
-    flex: 1;
+    flex: 0.5;
   }
   .main {
     height: 100vh;
     border: 5px solid;
     text-align: center;
     margin: 20px auto;
-    flex: 2;
+
+    flex: 0.5;
 
     .form-header {
       width: 80%;
@@ -77,6 +79,7 @@ const EmployeeRequestForm = () => {
   return (
     <EmployeeRequestFormStyled>
       <div className='left'>
+        {/* <FormNavbar /> */}
         <MessageSidebar />
       </div>
       <div className='main'>
