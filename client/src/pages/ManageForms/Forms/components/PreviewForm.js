@@ -9,7 +9,7 @@ const PreviewFormStyled = styled.div`
 
   width: 40%;
   margin: 50px auto;
-  border: 5px solid;
+  border: 1px solid lightgray;
   .header {
     .header-top {
       display: flex;
@@ -84,117 +84,6 @@ const PreviewFormStyled = styled.div`
         align-items: center;
       }
     }
-
-    /* .first {
-      .first-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 50%;
-        margin: 0 auto;
-        background-color: gray;
-        margin-bottom: 20px;
-      }
-      section {
-        width: 50%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        .form-group {
-          width: 100%;
-          border-bottom: 2px solid lightgray;
-          margin: 10px 0;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-      }
-    }
-    .second {
-      .second-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 50%;
-        margin: 0 auto;
-        background-color: gray;
-        margin-bottom: 20px;
-      }
-      section {
-        width: 50%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        .form-group {
-          width: 100%;
-          border-bottom: 2px solid lightgray;
-          margin: 10px 0;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-      }
-    }
-
-    .third {
-      .third-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 50%;
-        margin: 0 auto;
-        background-color: gray;
-        margin-bottom: 20px;
-      }
-      section {
-        width: 50%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        .form-group {
-          width: 100%;
-          border-bottom: 2px solid lightgray;
-          margin: 10px 0;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-      }
-    }
-
-    .fourth {
-      .fourth-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 50%;
-        margin: 0 auto;
-        background-color: gray;
-        margin-bottom: 20px;
-      }
-      section {
-        width: 50%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        .form-group {
-          width: 100%;
-          border-bottom: 2px solid lightgray;
-          margin: 10px 0;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-      }
-    } */
   }
 `;
 
@@ -394,10 +283,6 @@ const PreviewForm = () => {
                 <div className='form-group'>
                   <label>Emergency Contact Number</label>
                   <input type='text' />
-                </div>
-                <div className='form-group'>
-                  <label>Emergency Contact Number</label>
-                  <textarea name='' id='' cols='50' rows='5'></textarea>
                 </div>
                 <div className='form-group'>
                   <label>My Manager</label>

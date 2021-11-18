@@ -20,16 +20,12 @@ import SelectTemplate from './pages/ManageForms/Forms/SelectTemplate';
 import SampleForm from './pages/ManageForms/Forms/SelectTemplate/SampleForm';
 import BlankForm from './pages/ManageForms/Forms/SelectTemplate/BlankForm';
 import EmployeeRequestForm from './pages/ManageForms/Forms/SelectTemplate/EmployeeRequestForm';
-import MessageSidebar from './pages/ManageForms/Forms/components/MessageSidebar';
 import Process from './pages/ManageForms/Forms/pages/Process';
 import Permission from './pages/ManageForms/Forms/pages/Permission';
 import Designer from './pages/ManageForms/Forms/pages/Designer';
 import ReportsInner from './pages/ManageForms/Forms/pages/Reports';
-import FormNavbar from './pages/ManageForms/Forms/components/FormNavbar';
+import Setting from './pages/ManageForms/Forms/pages/Setting';
 import PreviewForm from './pages/ManageForms/Forms/components/PreviewForm';
-import LoadingCard from './components/LoadingCard';
-import HoverComponent from './pages/ManageForms/Forms/components/HoverComponent';
-import DummyData from './pages/ManageForms/Forms/components/DummyData';
 
 const Routing = () => {
   return (
@@ -37,7 +33,7 @@ const Routing = () => {
       <Header />
       <Sidebar />
       <Routes>
-        <Route exact path='/' element={<Process />} />
+        <Route exact path='/' element={<PreviewForm />} />
         <Route exact path='/dashboard' element={<Dashboard />} />
         <Route exact path='/submit-form' element={<SubmitForm />} />
         <Route exact path='/tasks' element={<Tasks />} />
@@ -48,81 +44,33 @@ const Routing = () => {
           path='/manage-forms/forms/select-template'
           element={<SelectTemplate />}
         />
+
+        <Route path='/manage-forms/form/sample/edit/:id' element={<Setting />}>
+          <Route path='settings' element={<SampleForm />} />
+          <Route path='designer' element={<Designer />} />
+          <Route path='process' element={<Process />} />
+          <Route path='permission' element={<Permission />} />
+          <Route path='reports' element={<ReportsInner />} />
+        </Route>
+
+        <Route path='/manage-forms/form/blank/edit/:id' element={<Setting />}>
+          <Route path='settings' element={<BlankForm />} />
+          <Route path='designer' element={<Designer />} />
+          <Route path='process' element={<Process />} />
+          <Route path='permission' element={<Permission />} />
+          <Route path='reports' element={<ReportsInner />} />
+        </Route>
+
         <Route
-          exact
-          path='/manage-forms/form/sample/edit/:id/settings'
-          element={<SampleForm />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/sample/edit/:id/designer'
-          element={<Designer />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/sample/edit/:id/process'
-          element={<Process />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/sample/edit/:id/permission'
-          element={<Permission />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/sample/edit/:id/reports'
-          element={<ReportsInner />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/blank/edit/:id/settings'
-          element={<BlankForm />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/blank/edit/:id/designer'
-          element={<Designer />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/blank/edit/:id/process'
-          element={<Process />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/blank/edit/:id/permission'
-          element={<Permission />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/blank/edit/:id/reports'
-          element={<ReportsInner />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/employee-leave/edit/:id/settings'
-          element={<EmployeeRequestForm />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/employee-leave/edit/:id/designer'
-          element={<Designer />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/employee-leave/edit/:id/process'
-          element={<Process />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/employee-leave/edit/:id/permission'
-          element={<Permission />}
-        />
-        <Route
-          exact
-          path='/manage-forms/form/employee-leave/edit/:id/reports'
-          element={<ReportsInner />}
-        />
+          path='manage-forms/form/employee-leave/edit/:id'
+          element={<Setting />}
+        >
+          <Route path='settings' element={<EmployeeRequestForm />} />
+          <Route path='designer' element={<Designer />} />
+          <Route path='process' element={<Process />} />
+          <Route path='permission' element={<Permission />} />
+          <Route path='reports' element={<ReportsInner />} />
+        </Route>
         <Route
           exact
           path='/manage-forms/submissions'

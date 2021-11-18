@@ -7,85 +7,95 @@ import {
 } from 'react-icons/ai';
 import { VscChecklist, VscServerProcess } from 'react-icons/vsc';
 import { GrUserAdmin } from 'react-icons/gr';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
-const MessageSidebarStyled = styled.div`
+const Wrapper = styled.div`
   position: absolute;
-  left: 100px;
-  width: 80px;
+  width: 85%;
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
   height: 100%;
   box-shadow: 0 2px 4px rgba(42, 51, 66, 0.08);
-  /* z-index: 1000; */
 
-  ul {
-    list-style: none;
-  }
-
-  a {
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    span {
-      font-size: 0.8rem;
+  .left {
+    border: 1px solid lightgray;
+    ul {
+      list-style: none;
+      li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 2px solid lightgray;
+        text-align: center;
+        padding: 10px 10px;
+        width: 100%;
+        height: 80px;
+        a {
+          color: black;
+          text-decoration: none;
+          font-weight: bold;
+          span {
+            font-size: 0.8rem;
+          }
+          :hover,
+          :active {
+            color: blue;
+          }
+        }
+      }
     }
-    :hover,
-    :active {
-      color: blue;
-    }
   }
-
-  li {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 2px solid lightgray;
-    text-align: center;
-    padding: 10px 10px;
-    width: 80px;
-    height: 80px;
+  .right {
+    position: absolute;
+    left: 100px;
+    top: 20px;
+    width: 90%;
+    margin-left: 200px;
   }
 `;
 
 const MessageSidebar = () => {
   return (
-    <MessageSidebarStyled>
-      <ul>
-        <li>
-          <Link to='manage-forms/form/sample/edit/:id/settings'>
-            <AiFillSetting /> Settings
-          </Link>
-        </li>
-        <li>
-          <Link to='/manage-forms/form/employee-leave/edit/1/designer'>
-            <AiOutlineAntDesign /> Designer
-          </Link>
-        </li>
-        <li>
-          <Link to='manage-forms/form/sample/edit/:id/process'>
-            <VscServerProcess /> Process
-          </Link>
-        </li>
-        <li>
-          <Link to='manage-forms/form/sample/edit/:id/permission'>
-            <GrUserAdmin /> Permission
-          </Link>
-        </li>
-        <li>
-          <Link to='manage-forms/form/sample/edit/:id/reports'>
-            <VscChecklist /> Reports
-          </Link>
-        </li>
-        <li>
-          <Link to='manage-forms/forms'>
-            <AiOutlineRollback /> Back to forms list
-          </Link>
-        </li>
-      </ul>
-    </MessageSidebarStyled>
+    <Wrapper>
+      <div className='left'>
+        <ul>
+          <li>
+            <Link to='settings'>
+              <AiFillSetting /> Settings
+            </Link>
+          </li>
+          <li>
+            <Link to='designer'>
+              <AiOutlineAntDesign /> Designer
+            </Link>
+          </li>
+          <li>
+            <Link to='process'>
+              <VscServerProcess /> Process
+            </Link>
+          </li>
+          <li>
+            <Link to='permission'>
+              <GrUserAdmin /> Permission
+            </Link>
+          </li>
+          <li>
+            <Link to='reports'>
+              <VscChecklist /> Reports
+            </Link>
+          </li>
+          <li>
+            <Link to='manage-forms/forms'>
+              <AiOutlineRollback /> Back to forms list
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className='right'>
+        <Outlet />
+      </div>
+    </Wrapper>
   );
 };
 

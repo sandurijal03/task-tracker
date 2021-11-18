@@ -71,7 +71,8 @@ const SampleCard = styled.div`
   }
 `;
 
-const SelectTemplate = () => {
+const SelectTemplate = (props) => {
+  console.log(props);
   return (
     <SelectTemplateStyled>
       <FormHeader name='select a template' />

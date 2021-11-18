@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { MdNavigateNext } from 'react-icons/md';
 import ProcessDetailed from '../components/ProcessDetailed';
+import Stage from '../components/Stage';
 
 let stages = [
   {
@@ -31,7 +31,7 @@ const ProcessStyled = styled.div`
   }
 
   .left {
-    width: 30%;
+    width: 10%;
     flex: 1;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
@@ -136,9 +136,6 @@ const Process = () => {
     }
   };
 
-  useEffect(() => {}, [dragAndDrop]);
-  useEffect(() => {}, [list]);
-
   const onDrop = () => {
     setList(dragAndDrop.updatedOrder);
     setDragAndDrop({
@@ -155,6 +152,13 @@ const Process = () => {
       draggedTo: null,
     });
   };
+  useEffect(() => {
+    console.log('Dragged From: ', dragAndDrop && dragAndDrop.draggedFrom);
+    console.log('Dropping Into: ', dragAndDrop && dragAndDrop.draggedTo);
+  }, [dragAndDrop]);
+  useEffect(() => {
+    console.log('list updated', list);
+  }, [list]);
 
   return (
     <ProcessStyled>
@@ -164,27 +168,17 @@ const Process = () => {
           <ul>
             {stages.map((stage, index) => {
               return (
-                <li
-                  onClick={handleClick}
+                <Stage
+                  handleClick={handleClick}
                   key={index}
-                  data-position={index}
-                  draggable
-                  onDragStart={onDragStart}
-                  onDragOver={onDragOver}
+                  stage={stage}
+                  index={index}
                   onDragLeave={onDragLeave}
+                  onDragStart={onDragStart}
                   onDrop={onDrop}
-                  className={
-                    dragAndDrop && dragAndDrop.draggedTo === +index
-                      ? 'dropArea'
-                      : ''
-                  }
-                >
-                  {stage.id}
-                  {stage.name}
-                  <span>
-                    <MdNavigateNext />
-                  </span>
-                </li>
+                  onDragOver={onDragOver}
+                  dragAndDrop={dragAndDrop}
+                />
               );
             })}
           </ul>
